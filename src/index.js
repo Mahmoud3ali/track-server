@@ -1,9 +1,11 @@
 require("./models/User");
+require("./models/Track");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParse = require("body-parser");
 
 const authRouter = require("./routes/authRoutes");
+const trackRouter = require("./routes/trackRoutes");
 const requireAuth = require("./middlewares/requireAuth");
 
 const mongoUri =
@@ -12,6 +14,7 @@ const app = express();
 
 app.use(bodyParse.json()); // use parser before the router
 app.use(authRouter);
+app.use(trackRouter);
 
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
